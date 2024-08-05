@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2FA Simulation Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>2FA Simulation Demo</h1>
+        <div id="simulation">
+            <div id="intro" class="section">
+                <h2>Introduction to 2FA</h2>
+                <p>Two-Factor Authentication (2FA) adds an extra layer of security to your online accounts by requiring two forms of identification: something you know (your password) and something you have (a verification code).</p>
+                <button onclick="goToSection('setup')">Next: Setting Up 2FA</button>
+            </div>
+            <div id="setup" class="section">
+                <h2>Setting Up 2FA</h2>
+                <p>1. Go to the security settings of your account.</p>
+                <p>2. Select "Two-Factor Authentication" from the options.</p>
+                <p>3. Choose your preferred method:</p>
+                <select id="method" onchange="showCodeInput()">
+                    <option value="">Select Method</option>
+                    <option value="sms">SMS</option>
+                    <option value="authenticator">Authenticator App</option>
+                </select>
+                <div id="codeInput" style="display:none;">
+                    <p>4. Enter the code sent to your device:</p>
+                    <input type="text" id="verificationCode" placeholder="Enter code">
+                    <button onclick="verifyCode()">Verify</button>
+                </div>
+                <p id="setupMessage" style="color:green; display:none;">2FA Setup Complete!</p>
+            </div>
+            <div id="login" class="section" style="display:none;">
+                <h2>Logging In with 2FA</h2>
+                <p>1. Enter your username and password.</p>
+                <p>2. Enter the verification code sent to your device:</p>
+                <input type="text" id="loginCode" placeholder="Enter code">
+                <button onclick="login()">Login</button>
+                <p id="loginMessage" style="color:green; display:none;">Login Successful!</p>
+            </div>
+            <div id="recovery" class="section" style="display:none;">
+                <h2>2FA Recovery Options</h2>
+                <p>If you lose access to your primary 2FA method, you can use one of your backup options.</p>
+                <p>1. Choose a backup method:</p>
+                <select id="recoveryMethod">
+                    <option value="backupCode">Backup Codes</option>
+                    <option value="secondaryEmail">Secondary Email</option>
+                </select>
+                <p>2. Follow the instructions to use your chosen backup method.</p>
+                <button onclick="completeRecovery()">Complete Recovery</button>
+                <p id="recoveryMessage" style="color:green; display:none;">Recovery Complete!</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
